@@ -34,3 +34,19 @@ class Solution:
                 if not fstr:
                     return ""
         return fstr
+    
+
+'''
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        fstr = strs[0]
+        for s in strs[1:]:
+            while fstr != "":
+                if s.startswith(fstr):
+                    break
+                else:
+                    fstr = fstr[:len(fstr)-1]
+            if fstr == "":
+                return ""
+        return fstr
+'''
