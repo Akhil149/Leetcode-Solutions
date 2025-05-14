@@ -29,27 +29,19 @@ Constraints:
 '''
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        if len(nums) == 3:
-            return nums[0] + nums[1] + nums[2]
         nums.sort()
-        temp = pow(2,31) - 1
-        res = 0
+        res = pow(2,31) - 1
         for i in range(len(nums)-2):
-            if i>0 and nums[i] == nums[i-1]:
-                continue
             j=i+1
             k = len(nums)-1
             while j<k:
-                if j> i+1 and nums[j] == nums[j-1]:
-                    j+=1
-                    continue
-                if abs(target - (nums[i]+nums[j]+nums[k])) < temp:
-                    temp = abs(target - (nums[i]+nums[j]+nums[k]))
+                temp_sum = nums[i]+nums[j]+nums[k]
+                if abs(target - temp_sum) < abs(target-res):
                     res = nums[i]+nums[j]+nums[k]
-                if nums[i]+nums[j]+nums[k] > target:
+                if temp_sum > target:
                     k -= 1
-                elif nums[i]+nums[j]+nums[k] < target:
+                elif temp_sum < target:
                     j += 1
                 else:
-                    return nums[i]+nums[j]+nums[k]
+                    return temp_sum
         return res
